@@ -16,14 +16,23 @@ Update patch version
 update_nimble_version
 ```
 
-Update minor version
-```
-update_nimble_version --minor
-```
-
-Update patch version
+Update patch version (default)
 ```
 update_nimble_version --patch
 ```
 
 
+Update minor version
+```
+update_nimble_version --minor
+```
+
+Update imajor version
+```
+update_nimble_version --major
+```
+
+Get current version
+```
+update_nimble_version --version
+```

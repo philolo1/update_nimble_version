@@ -3,6 +3,8 @@ import strformat
 import strutils
 import std/nre
 import std/logging
+import std/sugar
+import std/sequtils
 
 import std/parseopt
 
@@ -25,6 +27,18 @@ proc getCurrentMode(): Mode =
         mode = Mode.Minor
       elif p.key == "patch":
         mode = Mode.Patch
+      elif p.key == "version":
+        const nimbleFile = staticRead "../update_nimble_version.nimble"
+        let matchedLines = nimbleFile.split('\n').filter(line =>
+          line.find(re"""version.*=.*"(?<text>).*""").isSome
+        )
+        if matchedLines.len > 0:
+          let res = matchedLines[0].match(re"""version.*=.*"(?<text>.*)".*""")
+          echo res.get.captures["text"]
+          quit(0)
+        else:
+          fatal("version not found")
+          quit(1)
       else:
         fatal(fmt"Unknown argument --{p.key}")
         quit(1)

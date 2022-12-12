@@ -6,7 +6,7 @@ This library has no dependencies other than the Nim standard library.
 
 ## About
 
-This program searches for nimble versions recurivly and updates them.
+This program searches for nimble versions recursively and updates them.
 
 ## Usage
 
